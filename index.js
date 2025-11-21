@@ -3,6 +3,8 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const mysql = require('mysql2');
+require('dotenv').config();
+
 
 // Create the express application object
 const app = express();
@@ -10,10 +12,10 @@ const port = 8000;
 
 // Define the database connection pool
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',      // or 'root' if you prefer
-    password: 'jannat',
-    database: 'berties_books',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
