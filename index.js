@@ -5,10 +5,22 @@ const path = require('path');
 const mysql = require('mysql2');
 require('dotenv').config();
 
+var session = require('express-session');
+const expressSanitizer = require('express-sanitizer');   // ⭐ ADDED
 
 // Create the express application object
 const app = express();
 const port = 8000;
+
+// ⭐ SESSION MIDDLEWARE
+app.use(session({
+    secret: 'somerandomstuff',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
 
 // Define the database connection pool
 const db = mysql.createPool({
@@ -27,8 +39,11 @@ global.db = db;
 // Tell Express that we want to use EJS as the templating engine
 app.set('view engine', 'ejs');
 
-// Set up the body parser
+// Body parser
 app.use(express.urlencoded({ extended: true }));
+
+// ⭐ SANITISER (must come AFTER body parser)
+app.use(expressSanitizer());   // ⭐ ADDED
 
 // Set up public folder (for css and static js)
 app.use(express.static(path.join(__dirname, 'public')));

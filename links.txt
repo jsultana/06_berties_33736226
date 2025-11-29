@@ -1,1 +1,2 @@
-home=http://www.doc.gold.ac.uk/usr/413/
+home=http://doc.gold.ac.uk/~ssult001/
+app=http://doc413.net101:8000/
