@@ -87,6 +87,34 @@ If validation fails, the registration page is shown again without inserting anyt
 
 I also added basic sanitisation using `express-sanitizer` on the first name field to protect against simple XSS attacks. Before inserting the data, `req.sanitize(req.body.first)` removes any potentially harmful HTML/JavaScript (e.g. `<script>alert("XSS")</script>`). This ensures that even if a user attempts to inject a script into the form, it is cleaned before being processed or displayed.
 
+## API Documentation
+
+### GET /api/books
+Returns a JSON array of all books in the database.
+
+### Query Parameters
+
+- `search` – filter by book name (substring match)  
+  Example: `/api/books?search=world`
+
+- `minprice` – minimum price (inclusive)  
+  Example: `/api/books?minprice=10`
+
+- `maxprice` – maximum price (inclusive)  
+  Example: `/api/books?maxprice=20`
+
+- `sort` – sort the results  
+  Options: `name` or `price`  
+  Example: `/api/books?sort=price`
+
+### Examples
+
+- `/api/books`  
+- `/api/books?search=the`  
+- `/api/books?minprice=10&maxprice=20`  
+- `/api/books?minprice=10&maxprice=20&sort=price`  
+
+This API is public and requires no authentication, as required for Lab 9.
 
 ---
 

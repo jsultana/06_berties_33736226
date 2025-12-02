@@ -51,6 +51,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Define our application-specific data
 app.locals.shopData = { shopName: "Bertie's Books" };
 
+// ===== ROUTES =====
+
 // Load the route handlers
 const mainRoutes = require('./routes/main');
 app.use('/', mainRoutes);
@@ -62,6 +64,14 @@ app.use('/users', usersRoutes);
 // Load the route handlers for /books
 const booksRoutes = require('./routes/books');
 app.use('/books', booksRoutes);
+
+// Load the route handlers for /weather
+const weatherRoutes = require('./routes/weather');
+app.use('/weather', weatherRoutes);
+
+// Load the route handlers for /api
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

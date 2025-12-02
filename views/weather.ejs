@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+
+<body>
+    <h1>Weather</h1>
+
+    <form action="/weather" method="POST">
+        <label for="city">Enter a city:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <% if (weatherMsg) { %>
+        <p>
+            <%= weatherMsg %>
+        </p>
+        <% } %>
+</body>
+
+</html>
